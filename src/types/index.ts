@@ -18,6 +18,12 @@ export interface Product {
   isFeatured: boolean;
   generalProperties?: Record<string, string>;
   quickDetails?: Record<string, string>;
+  description?: string;
+  storageInfo?: string;
+  packagingInfo?: string;
+  deliveryInfo?: string;
+  features?: string[];
+  relatedProductIds?: string[];
 }
 
 export interface HeroData {

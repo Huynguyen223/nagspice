@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Header } from '../../../components/layout/Header';
 import { Footer } from '../../../components/layout/Footer';
 import { productGrades } from '../../../data/mockData';
 import { Image } from '../../../components/ui/Image';
-import { Button } from '../../../components/ui/Button';
-import { FeaturedProductsTabs } from '../../../components/sections/FeaturedProductsTabs';
+import { Link } from '../../../components/ui/Link';
 import { Product } from '../../../types';
+import { Share2, Facebook, Twitter, Linkedin, Mail, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 export default function ProductPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
+  const [activeTab, setActiveTab] = useState<'description'>('description');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,113 +20,304 @@ export default function ProductPage() {
     if (foundProduct) {
       setProduct(foundProduct);
     } else {
-      // Handle 404
       navigate('/');
     }
   }, [slug, navigate]);
 
-  if (!product) {
-    return null; // or a loading spinner
-  }
+  if (!product) return null;
+
+  const relatedProducts = product.relatedProductIds
+    ? productGrades.filter(p => product.relatedProductIds!.includes(p.id)).slice(0, 3)
+    : productGrades.filter(p => p.categoryId === product.categoryId && p.id !== product.id).slice(0, 3);
+
+  const categoryName =
+    product.categoryId === '1' ? 'Cinnamon' :
+      product.categoryId === '3' ? 'Pepper' :
+        product.categoryId === '5' ? 'Turmeric' : 'Spices';
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-white">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--clr-bg)', fontFamily: 'var(--font-body)' }}>
       <Header />
-      
-      <main className="flex-grow">
-        {/* Breadcrumbs */}
-        <div className="bg-stone-50 py-4 border-b border-stone-200">
-          <div className="container mx-auto px-4 text-sm text-stone-500">
-            <span className="hover:text-orange-600 cursor-pointer" onClick={() => navigate('/')}>Home</span>
-            <span className="mx-2">/</span>
-            <span className="hover:text-orange-600 cursor-pointer" onClick={() => navigate('/products')}>Products</span>
-            <span className="mx-2">/</span>
-            <span className="text-stone-900 font-medium">{product.name}</span>
-          </div>
-        </div>
 
-        {/* Product Split View */}
-        <section className="py-12 md:py-20">
+      {/* ── Hero Banner ── */}
+      <div className="relative w-full overflow-hidden" style={{ height: '220px', backgroundColor: '#2a1a0a' }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(/images/hero-farming.jpg)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.35,
+          }}
+        />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(20,12,4,0.8) 0%, rgba(20,12,4,0.4) 100%)' }} />
+        <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-end pb-8">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-1.5 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            <span className="cursor-pointer hover:text-amber-400 transition-colors" onClick={() => navigate('/')}>Home</span>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="cursor-pointer hover:text-amber-400 transition-colors" onClick={() => navigate('/products')}>Products</span>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span style={{ color: '#f5edd8' }}>{product.name}</span>
+          </nav>
+        </div>
+      </div>
+
+      <main className="flex-grow">
+        {/* ── Product Split View ── */}
+        <section className="py-12" style={{ backgroundColor: 'var(--clr-surface)' }}>
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              {/* Image Left */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 shadow-sm">
-                <Image 
-                  src={product.image} 
-                  alt={product.altText} 
-                  fill 
-                  className="object-cover"
+              {/* Left: Image */}
+              <div className="rounded-xl overflow-hidden border shadow-sm"
+                style={{ borderColor: 'var(--clr-border)', backgroundColor: 'var(--clr-bg-alt)', aspectRatio: '4/3' }}>
+                <img
+                  src={product.image}
+                  alt={product.altText}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
 
-              {/* Details Right */}
-              <div className="flex flex-col">
-                <h1 className="text-4xl md:text-5xl font-bold text-stone-900 mb-4 tracking-tight">
-                  {product.name}
-                </h1>
-                
-                <div className="text-3xl font-light text-orange-600 mb-8 pb-8 border-b border-stone-200">
-                  {product.fobPrice} <span className="text-lg text-stone-500 font-normal">Est. FOB Price</span>
+              {/* Right: Info */}
+              <div className="flex flex-col gap-4">
+                {/* Category */}
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--clr-primary)' }}>
+                    Category:{' '}
+                    <Link href="/products" style={{ color: 'var(--clr-primary)' }}>
+                      {categoryName}
+                    </Link>
+                  </span>
                 </div>
 
-                {product.generalProperties && (
-                  <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-stone-900 mb-4">General Properties</h3>
-                    <ul className="space-y-3">
-                      {Object.entries(product.generalProperties).map(([key, value]) => (
-                        <li key={key} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                          <span className="text-stone-500 font-medium min-w-[200px]">{key}:</span>
-                          <span className="text-stone-900">{value}</span>
-                        </li>
-                      ))}
-                    </ul>
+                {/* Product name */}
+                <h1 style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontWeight: 700,
+                  color: 'var(--clr-text)',
+                  lineHeight: 1.2,
+                  margin: 0,
+                }}>
+                  {product.name}
+                </h1>
+
+                {/* FOB price */}
+                <div className="flex items-baseline gap-3">
+                  <span style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--clr-primary)', fontFamily: 'var(--font-heading)' }}>
+                    {product.fobPrice}
+                  </span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--clr-text-muted)' }}>Est. FOB Price</span>
+                </div>
+
+                {/* Key specs */}
+                {product.specifications.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {product.specifications.map(spec => (
+                      <span key={spec} className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium"
+                        style={{ backgroundColor: 'var(--clr-bg-alt)', color: 'var(--clr-text)', border: '1px solid var(--clr-border)' }}>
+                        {spec}
+                      </span>
+                    ))}
                   </div>
                 )}
 
-                <div className="flex flex-col sm:flex-row gap-4 mt-auto pt-8">
-                  <Button variant="primary" className="flex-1 py-4 text-lg shadow-lg hover:shadow-xl transition-shadow">
+                <hr style={{ borderColor: 'var(--clr-border)' }} />
+
+                {/* Share icons */}
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium" style={{ color: 'var(--clr-text-muted)' }}>Share:</span>
+                  {[
+                    { Icon: Facebook, label: 'Facebook' },
+                    { Icon: Twitter, label: 'Twitter' },
+                    { Icon: Linkedin, label: 'LinkedIn' },
+                    { Icon: Mail, label: 'Email' },
+                  ].map(({ Icon, label }) => (
+                    <button key={label} title={label}
+                      className="p-2 rounded-full transition-colors hover:bg-amber-50"
+                      style={{ color: 'var(--clr-text-muted)', border: '1px solid var(--clr-border)' }}>
+                      <Icon className="h-3.5 w-3.5" />
+                    </button>
+                  ))}
+                </div>
+
+                {/* CTA buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <Link
+                    href="/contact"
+                    className="flex-1 inline-flex items-center justify-center py-3.5 rounded text-sm font-semibold text-white transition-all hover:opacity-90"
+                    style={{ backgroundColor: 'var(--clr-primary)' }}
+                  >
                     Request Wholesale Quote
-                  </Button>
-                  <Button variant="secondary" className="flex-1 py-4 text-lg">
+                  </Link>
+                  <button
+                    className="flex-1 inline-flex items-center justify-center py-3.5 rounded text-sm font-semibold transition-all hover:bg-amber-50"
+                    style={{ border: '1.5px solid var(--clr-border)', color: 'var(--clr-text)' }}
+                  >
                     Download Specs PDF
-                  </Button>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Quick Details Table */}
-        {product.quickDetails && (
-          <section className="py-16 bg-stone-50 border-t border-stone-200">
-            <div className="container mx-auto px-4 max-w-5xl">
-              <h2 className="text-3xl font-bold text-stone-900 mb-8 text-center">Quick Details</h2>
-              <div className="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                  {Object.entries(product.quickDetails).map(([key, value], idx) => (
-                    <div 
-                      key={key} 
-                      className={`flex flex-col sm:flex-row p-4 border-stone-100 ${
-                        idx % 2 === 0 ? 'bg-stone-50/50' : 'bg-white'
-                      } ${
-                        idx !== Object.keys(product.quickDetails!).length - 1 && idx !== Object.keys(product.quickDetails!).length - 2 
-                          ? 'border-b' 
-                          : ''
-                      } ${
-                        idx % 2 === 0 ? 'md:border-r' : ''
-                      }`}
-                    >
-                      <span className="text-stone-500 font-medium sm:w-1/3 mb-1 sm:mb-0">{key}</span>
-                      <span className="text-stone-900 sm:w-2/3">{value}</span>
-                    </div>
-                  ))}
+        {/* ── Description Tab ── */}
+        <section className="border-t" style={{ backgroundColor: 'var(--clr-bg)', borderColor: 'var(--clr-border)' }}>
+          <div className="container mx-auto px-4">
+            {/* Tab bar */}
+            <div className="flex border-b" style={{ borderColor: 'var(--clr-border)' }}>
+              <button
+                onClick={() => setActiveTab('description')}
+                className="px-8 py-4 text-sm font-semibold relative"
+                style={{
+                  color: activeTab === 'description' ? 'var(--clr-primary)' : 'var(--clr-text-muted)',
+                  fontFamily: 'var(--font-body)',
+                }}
+              >
+                Description
+                {activeTab === 'description' && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ backgroundColor: 'var(--clr-accent-red)' }} />
+                )}
+              </button>
+            </div>
+
+            {/* Tab content */}
+            <div className="py-12 max-w-4xl">
+              {/* Description heading */}
+              <h2 className="mb-1 text-sm font-bold uppercase tracking-widest" style={{ color: 'var(--clr-accent-red)' }}>
+                1. PRODUCT DESCRIPTION
+              </h2>
+
+              {product.description && (
+                <p className="mb-8" style={{ color: 'var(--clr-text-muted)', lineHeight: 1.8 }}>
+                  {product.description}
+                </p>
+              )}
+
+              {/* Quick Details table */}
+              {product.quickDetails && (
+                <div className="mb-10">
+                  <h3 className="mb-4 pb-1 border-b text-sm font-bold" style={{ color: 'var(--clr-text)', borderColor: 'var(--clr-border)' }}>
+                    Quick Details:
+                  </h3>
+                  <div className="overflow-hidden rounded-lg border" style={{ borderColor: 'var(--clr-border)' }}>
+                    <table className="w-full text-sm border-collapse">
+                      <tbody>
+                        {Object.entries(product.quickDetails).map(([key, value], idx) => (
+                          <tr key={key} style={{ backgroundColor: idx % 2 === 0 ? 'var(--clr-bg-alt)' : 'var(--clr-surface)' }}>
+                            <td className="py-2.5 px-4 font-medium w-1/3 border-b border-r"
+                              style={{ color: 'var(--clr-text-muted)', borderColor: 'var(--clr-border)' }}>
+                              {key}
+                            </td>
+                            <td className="py-2.5 px-4 border-b"
+                              style={{ color: 'var(--clr-text)', borderColor: 'var(--clr-border)' }}>
+                              {value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+              )}
+
+              {/* Storage info */}
+              {product.storageInfo && (
+                <div className="mb-8 rounded-lg p-5 border-l-4"
+                  style={{ backgroundColor: 'var(--clr-bg-alt)', borderLeftColor: 'var(--clr-primary)' }}>
+                  <h3 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--clr-text)' }}>
+                    Container Storage / Shelf Life
+                  </h3>
+                  <p style={{ color: 'var(--clr-text-muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>{product.storageInfo}</p>
+                </div>
+              )}
+
+              {/* Packaging & Delivery */}
+              {(product.packagingInfo || product.deliveryInfo) && (
+                <div className="mb-8 rounded-lg p-5 border-l-4"
+                  style={{ backgroundColor: '#fdf8f2', borderLeftColor: 'var(--clr-accent)' }}>
+                  <h3 className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: 'var(--clr-text)' }}>
+                    Packaging, Shipping & Delivery Time
+                  </h3>
+                  {product.packagingInfo && (
+                    <p className="mb-1.5" style={{ color: 'var(--clr-text-muted)', fontSize: '0.9rem' }}>
+                      <strong style={{ color: 'var(--clr-text)' }}>Packaging:</strong> {product.packagingInfo}
+                    </p>
+                  )}
+                  {product.deliveryInfo && (
+                    <p style={{ color: 'var(--clr-text-muted)', fontSize: '0.9rem' }}>
+                      {product.deliveryInfo}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* Features */}
+              {product.features && product.features.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-sm font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--clr-text)' }}>
+                    For More Information
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {product.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-4 w-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--clr-primary)' }} />
+                        <span style={{ color: 'var(--clr-text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Related Products ── */}
+        {relatedProducts.length > 0 && (
+          <section className="py-14 border-t" style={{ backgroundColor: 'var(--clr-surface)', borderColor: 'var(--clr-border)' }}>
+            <div className="container mx-auto px-4">
+              <h2 className="mb-8 text-center" style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: 'var(--clr-text)',
+              }}>
+                Related Products
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {relatedProducts.map(rp => (
+                  <div key={rp.id}
+                    className="group rounded-lg overflow-hidden border transition-shadow hover:shadow-md"
+                    style={{ backgroundColor: 'var(--clr-surface)', borderColor: 'var(--clr-border)' }}>
+                    <Link href={`/products/${rp.slug || rp.id}`} className="block overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                      <img
+                        src={rp.image}
+                        alt={rp.altText}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }}
+                        className="group-hover:scale-105"
+                      />
+                    </Link>
+                    <div className="p-5 text-center">
+                      <Link href={`/products/${rp.slug || rp.id}`}
+                        className="block font-semibold mb-4 transition-colors"
+                        style={{ fontFamily: 'var(--font-heading)', fontSize: '1.15rem', color: 'var(--clr-text)' }}>
+                        {rp.name}
+                      </Link>
+                      <Link
+                        href={`/products/${rp.slug || rp.id}`}
+                        className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-white rounded transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: 'var(--clr-accent-red)' }}
+                      >
+                        Read More
+                      </Link>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
         )}
-
-        <FeaturedProductsTabs />
       </main>
 
       <Footer />

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="95" fill="#14532d" stroke="#15803d" stroke-width="4"/>
+  <circle cx="100" cy="100" r="78" fill="none" stroke="#4ade80" stroke-width="2"/>
+  <text x="100" y="72" font-family="Arial, sans-serif" font-weight="bold" font-size="22" fill="#ffffff" text-anchor="middle">USDA</text>
+  <rect x="45" y="80" width="110" height="38" rx="4" fill="#15803d"/>
+  <text x="100" y="105" font-family="Arial, sans-serif" font-weight="bold" font-size="20" fill="#ffffff" text-anchor="middle">ORGANIC</text>
+  <text x="100" y="138" font-family="Arial, sans-serif" font-size="10" fill="#86efac" text-anchor="middle">CERTIFIED ORGANIC</text>
+  <circle cx="100" cy="160" r="12" fill="#4ade80"/>
+  <text x="100" y="164" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#14532d" text-anchor="middle">✓</text>
+</svg>

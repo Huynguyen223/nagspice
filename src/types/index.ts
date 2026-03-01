@@ -9,12 +9,15 @@ export interface Category {
 export interface Product {
   id: string;
   name: string;
+  slug?: string;
   fobPrice: string;
   categoryId: string;
   image: string;
   altText: string;
   specifications: string[];
   isFeatured: boolean;
+  generalProperties?: Record<string, string>;
+  quickDetails?: Record<string, string>;
 }
 
 export interface HeroData {

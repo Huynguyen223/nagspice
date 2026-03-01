@@ -3,6 +3,7 @@ import { Product } from '../../types';
 import { Button } from './Button';
 import { Image } from './Image';
 import { FileText, ArrowRightLeft } from 'lucide-react';
+import { Link } from './Link';
 
 interface ProductCardProps {
   product: Product;
@@ -10,7 +11,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="group flex flex-col bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300">
+    <Link href={`/products/${product.slug || product.id}`} className="group flex flex-col bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300">
       <div className="relative aspect-square overflow-hidden bg-stone-100">
         <Image 
           src={product.image} 
@@ -21,8 +22,8 @@ export function ProductCard({ product }: ProductCardProps) {
         
         {/* Hover Actions */}
         <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex gap-2">
-          <Button variant="primary" className="w-full shadow-lg text-sm">Request Quote</Button>
-          <Button variant="secondary" className="px-3 shadow-lg" title="Compare Specs">
+          <Button variant="primary" className="w-full shadow-lg text-sm" onClick={(e) => e.preventDefault()}>Request Quote</Button>
+          <Button variant="secondary" className="px-3 shadow-lg" title="Compare Specs" onClick={(e) => e.preventDefault()}>
             <ArrowRightLeft className="w-4 h-4" />
           </Button>
         </div>
@@ -47,6 +48,6 @@ export function ProductCard({ product }: ProductCardProps) {
           <span className="text-lg font-bold text-stone-900">{product.fobPrice}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

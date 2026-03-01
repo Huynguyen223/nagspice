@@ -18,6 +18,7 @@ export const productGrades: Product[] = [
   { 
     id: 'p1', 
     name: 'Cigarette Cassia (Premium)', 
+    slug: 'cigarette-cassia-premium',
     fobPrice: '$4,500 / MT', 
     categoryId: '1', 
     image: '/images/cigarette-cassia.jpg', 
@@ -28,6 +29,7 @@ export const productGrades: Product[] = [
   { 
     id: 'p2', 
     name: 'Split Cassia (Standard)', 
+    slug: 'split-cassia-standard',
     fobPrice: '$2,800 / MT', 
     categoryId: '3', 
     image: '/images/split-cassia-standard.jpg', 
@@ -38,6 +40,7 @@ export const productGrades: Product[] = [
   { 
     id: 'p3', 
     name: 'Broken Cassia (KABC)', 
+    slug: 'broken-cassia-kabc',
     fobPrice: '$2,100 / MT', 
     categoryId: '1', 
     image: '/images/broken-cassia-kabc.jpg', 
@@ -48,6 +51,7 @@ export const productGrades: Product[] = [
   { 
     id: 'p4', 
     name: 'Cinnamon Powder (100 Mesh)', 
+    slug: 'cinnamon-powder-100mesh',
     fobPrice: '$3,200 / MT', 
     categoryId: '2', 
     image: '/images/cinnamon-powder-100mesh.jpg', 
@@ -55,6 +59,48 @@ export const productGrades: Product[] = [
     specifications: ['VO: 2.0% min', 'Moisture: 12% max', 'Mesh: 100% pass 100 mesh'],
     isFeatured: true 
   },
+  {
+    id: 'p5',
+    name: 'Ground Black Pepper',
+    slug: 'ground-black-pepper',
+    fobPrice: '$4,100 / MT',
+    categoryId: '2',
+    image: '/images/ground-black-pepper.jpg',
+    altText: 'Ground Black Pepper',
+    specifications: ['Moisture: 13% max', 'Impurity: 0,1% max', 'Shape: Powder'],
+    isFeatured: true,
+    generalProperties: {
+      'Ingredient': 'Coarse form of 100% natural Black pepper (Family of Piperaceae)',
+      'Flavour Characteristic(s)': 'Pungent and biting',
+      'Odour/Aroma': 'Characteristic, free from any objectionable odors',
+      'Physical Colour': 'Black',
+      'Country of Origin': 'Vietnam'
+    },
+    quickDetails: {
+      'Product Type': 'Single Herbs & Spices',
+      'Processing Type': 'Raw',
+      'Color': 'Dark grey to Black (Natural)',
+      'Place of Origin': 'Tây Nguyên (Central Highlands), Vietnam',
+      'Product Name': 'Ground Black Pepper',
+      'Shelf Life': '2 years',
+      'Moisture': '13% max',
+      'Density': '—',
+      'Style': 'Dried',
+      'Certification': '—',
+      'Impurity': '0,1% max',
+      'Drying Process': 'AD',
+      'Features': '100% Pure',
+      'Shape': 'Powder',
+      'Broken': '—',
+      'Particle Size': '10,14,24,28, 32,40 ,60 ,80Mesh',
+      'Packing': 'The material is packaged in 25 kg Kraft poly woven bags with EVOH Liner',
+      'Age': '2025',
+      'MOQ': '8 Tons',
+      'Capacity': '13,5 MTS/20FT, 27 MTS/40FT',
+      'Samples': 'Free or Available',
+      'Payment': 'LC at sight, TT, DP, CAD'
+    }
+  }
 ];
 
 export const certifications: Certification[] = [

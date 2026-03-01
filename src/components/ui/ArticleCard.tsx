@@ -2,6 +2,7 @@ import React from 'react';
 import { Article } from '../../types';
 import { Image } from './Image';
 import { Calendar, Tag } from 'lucide-react';
+import { Link } from './Link';
 
 interface ArticleCardProps {
   article: Article;
@@ -38,9 +39,9 @@ export function ArticleCard({ article }: ArticleCardProps) {
         </p>
         
         <div className="mt-auto pt-4 border-t border-stone-100">
-          <a href="#" className="text-orange-600 font-medium text-sm hover:text-orange-700 transition-colors inline-flex items-center gap-1">
+          <Link href={`/articles/${article.id}`} className="text-orange-600 font-medium text-sm hover:text-orange-700 transition-colors inline-flex items-center gap-1">
             Read Full Article &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </article>

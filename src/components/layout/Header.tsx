@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, ShoppingCart, Menu, User } from 'lucide-react';
+import { Link } from '../ui/Link';
 
 export function Header() {
   return (
@@ -9,16 +10,16 @@ export function Header() {
           <button className="md:hidden p-2 -ml-2 text-stone-600 hover:text-stone-900">
             <Menu className="h-6 w-6" />
           </button>
-          <a href="/" className="text-2xl font-bold tracking-tighter text-stone-900">
+          <Link href="/" className="text-2xl font-bold tracking-tighter text-stone-900">
             NAGSPICE
-          </a>
+          </Link>
         </div>
         
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">Shop</a>
-          <a href="#" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">About Us</a>
-          <a href="#" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">Co-Packing</a>
-          <a href="#" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">Contact</a>
+          <Link href="/" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">Home</Link>
+          <Link href="/products" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">Export Products</Link>
+          <Link href="/articles" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">News</Link>
+          <Link href="/contact" className="text-sm font-medium text-stone-600 hover:text-orange-600 transition-colors">Contact Us</Link>
         </nav>
 
         <div className="flex items-center gap-4">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '../ui/Button';
+import { Link } from '../ui/Link';
 
 export function Footer() {
   return (
@@ -16,21 +17,21 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Our Story</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Company Profile</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Our Facility</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Commitment To Quality</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Contract Manufacturing</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Our Awards</a></li>
+              <li><Link href="/about" className="hover:text-orange-500 transition-colors">Company Profile</Link></li>
+              <li><Link href="/facility" className="hover:text-orange-500 transition-colors">Our Facility</Link></li>
+              <li><Link href="/quality" className="hover:text-orange-500 transition-colors">Commitment To Quality</Link></li>
+              <li><Link href="/manufacturing" className="hover:text-orange-500 transition-colors">Contract Manufacturing</Link></li>
+              <li><Link href="/awards" className="hover:text-orange-500 transition-colors">Our Awards</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Look Up Order</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Refer a Friend</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Returns</a></li>
-              <li><a href="#" className="hover:text-orange-500 transition-colors">Shipping & Delivery</a></li>
+              <li><Link href="/products" className="hover:text-orange-500 transition-colors">Export Products</Link></li>
+              <li><Link href="/articles" className="hover:text-orange-500 transition-colors">News</Link></li>
+              <li><Link href="/contact" className="hover:text-orange-500 transition-colors">Contact Us</Link></li>
+              <li><Link href="/shipping" className="hover:text-orange-500 transition-colors">Shipping & Delivery</Link></li>
             </ul>
           </div>
 
@@ -53,8 +54,8 @@ export function Footer() {
         <div className="border-t border-stone-800 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-stone-500">
           <p>&copy; {new Date().getFullYear()} Nagspice. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

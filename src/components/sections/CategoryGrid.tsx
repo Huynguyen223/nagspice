@@ -2,6 +2,7 @@ import React from 'react';
 import { categories } from '../../data/mockData';
 import { ArrowRight } from 'lucide-react';
 import { Image } from '../ui/Image';
+import { Link } from '../ui/Link';
 
 export function CategoryGrid() {
   return (
@@ -14,15 +15,15 @@ export function CategoryGrid() {
               Explore our premium bulk cinnamon offerings, processed to meet strict international standards for food manufacturers and distributors.
             </p>
           </div>
-          <a href="#" className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700 transition-colors group">
+          <Link href="/catalog" className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700 transition-colors group">
             Download Full Catalog
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category) => (
-            <a 
+            <Link 
               key={category.id} 
               href={`/category/${category.slug}`}
               className="group relative h-64 md:h-80 rounded-2xl overflow-hidden block bg-stone-200"
@@ -40,7 +41,7 @@ export function CategoryGrid() {
                   <ArrowRight className="w-5 h-5" />
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

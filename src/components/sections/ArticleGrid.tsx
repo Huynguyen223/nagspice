@@ -2,6 +2,7 @@ import React from 'react';
 import { articles } from '../../data/mockData';
 import { ArticleCard } from '../ui/ArticleCard';
 import { ArrowRight } from 'lucide-react';
+import { Link } from '../ui/Link';
 
 export function ArticleGrid() {
   return (
@@ -14,10 +15,10 @@ export function ArticleGrid() {
               Stay informed with the latest updates on crop yields, quality standards, and global shipping logistics from our expert team.
             </p>
           </div>
-          <a href="#" className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700 transition-colors group">
+          <Link href="/articles" className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700 transition-colors group">
             View All Articles
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

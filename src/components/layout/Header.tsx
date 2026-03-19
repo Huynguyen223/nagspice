@@ -4,11 +4,11 @@ import { Link } from '../ui/Link';
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-md shadow-sm"
-      style={{ borderColor: 'var(--clr-border)' }}>
+    <header className="sticky top-0 z-50 w-full border-b shadow-sm"
+      style={{ backgroundColor: 'rgba(248, 240, 235, 0.98)', backdropFilter: 'blur(8px)', borderColor: 'rgba(124,45,18,0.15)' }}>
       {/* Top bar */}
       <div className="hidden md:flex items-center justify-end gap-6 px-6 py-1.5 text-xs border-b"
-        style={{ borderColor: 'var(--clr-border)', backgroundColor: 'var(--clr-bg)', color: 'var(--clr-text-muted)' }}>
+        style={{ borderColor: 'rgba(255,255,255,0.2)', backgroundColor: 'var(--clr-primary)', color: '#ffffff' }}>
         <span className="flex items-center gap-1.5">
           <Phone className="h-3 w-3" /> +84 123 456 789
         </span>
@@ -23,9 +23,9 @@ export function Header() {
           <button className="md:hidden p-2 -ml-2" style={{ color: 'var(--clr-text-muted)' }}>
             <Menu className="h-6 w-6" />
           </button>
-          <Link href="/" className="flex flex-col leading-none">
+          <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex flex-col leading-none">
             <span style={{
-              fontFamily: 'var(--font-heading)',
+              fontFamily: 'var(--font-logo)',
               fontSize: '1.7rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

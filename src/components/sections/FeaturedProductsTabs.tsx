@@ -30,7 +30,7 @@ export function FeaturedProductsTabs() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-stone-900 mb-6 uppercase tracking-wider">Featured Products</h2>
+          <h2 className="text-3xl font-bold mb-6 uppercase tracking-wider" style={{ fontFamily: 'var(--font-heading)', color: 'var(--clr-text)' }}>Featured Products</h2>
           <div className="flex justify-center gap-8 border-b border-stone-200">
             {(['Best Sellers', 'New Arrivals', 'Popular Item'] as const).map((tab) => (
               <button
@@ -44,7 +44,7 @@ export function FeaturedProductsTabs() {
               >
                 {tab}
                 {activeTab === tab && (
-                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#B91C1C]" />
+                  <div className="absolute bottom-0 left-0 right-0 h-[3px]" style={{ backgroundColor: 'var(--clr-primary)' }} />
                 )}
               </button>
             ))}

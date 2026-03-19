@@ -542,6 +542,10 @@ export const certifications: Certification[] = [
   { id: 'c2', name: 'HACCP Certified', logo: '/images/cert-haccp.svg' },
   { id: 'c3', name: 'Non-GMO Project Verified', logo: '/images/cert-nongmo.svg' },
   { id: 'c4', name: 'USDA Organic (Optional)', logo: '/images/cert-usda.svg' },
+  { id: 'c5', name: 'BRC', logo: '/images/cert-brc.svg' },
+  { id: 'c6', name: 'FSMA', logo: '/images/cert-fsma.svg' },
+  { id: 'c7', name: 'Kosher', logo: '/images/cert-kosher.svg' },
+  { id: 'c8', name: 'Halal', logo: '/images/cert-halal.svg' },
 ];
 
 export const companyInfo: CompanyInfo = {

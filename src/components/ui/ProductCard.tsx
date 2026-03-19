@@ -23,7 +23,7 @@ export function ProductCard({ product, buttonStyle }: ProductCardProps) {
       </Link>
       
       <div className="p-5 flex flex-col flex-grow text-center">
-        <Link href={`/products/${product.slug || product.id}`} className="font-bold text-lg text-stone-900 mb-4 group-hover:text-red-700 transition-colors">
+        <Link href={`/products/${product.slug || product.id}`} className="font-bold text-lg text-stone-900 mb-4 group-hover:opacity-75 transition-opacity">
           {product.name}
         </Link>
         
@@ -31,7 +31,8 @@ export function ProductCard({ product, buttonStyle }: ProductCardProps) {
           {buttonStyle === 'doc-tiep' && (
             <Link 
               href={`/products/${product.slug || product.id}`}
-              className="block w-full bg-[#B91C1C] hover:bg-[#991B1B] text-white text-sm font-bold uppercase py-3 px-4 text-center transition-colors"
+              className="block w-full text-white text-sm font-bold uppercase py-3 px-4 text-center transition-opacity hover:opacity-90"
+              style={{ backgroundColor: 'var(--clr-primary)' }}
             >
               READ MORE
             </Link>
@@ -39,7 +40,8 @@ export function ProductCard({ product, buttonStyle }: ProductCardProps) {
           {buttonStyle === 'chon' && (
             <Link 
               href={`/products/${product.slug || product.id}`}
-              className="flex items-center justify-center gap-2 w-full bg-[#B91C1C] hover:bg-[#991B1B] text-white text-sm font-bold uppercase py-3 px-4 text-center transition-colors"
+              className="flex items-center justify-center gap-2 w-full text-white text-sm font-bold uppercase py-3 px-4 text-center transition-opacity hover:opacity-90"
+              style={{ backgroundColor: 'var(--clr-primary)' }}
             >
               <ShoppingCart className="w-4 h-4" /> ADD TO CART
             </Link>
@@ -47,15 +49,30 @@ export function ProductCard({ product, buttonStyle }: ProductCardProps) {
           {buttonStyle === 'mixed' && (
             <Link 
               href={`/products/${product.slug || product.id}`}
-              className="block w-full bg-[#B91C1C] hover:bg-[#991B1B] text-white text-sm font-bold uppercase py-3 px-4 text-center transition-colors"
+              className="block w-full text-white text-sm font-bold uppercase py-3 px-4 text-center transition-opacity hover:opacity-90"
+              style={{ backgroundColor: 'var(--clr-primary)' }}
             >
               READ MORE
             </Link>
           )}
           {!buttonStyle && (
-            <div className="flex items-center justify-between border-t border-stone-100 pt-4">
-              <span className="text-xs text-stone-500 uppercase font-semibold tracking-wider">Est. FOB Price</span>
-              <span className="text-lg font-bold text-stone-900">{product.fobPrice}</span>
+            <div className="flex flex-col gap-2 pt-4 border-t" style={{ borderColor: 'var(--clr-border)' }}>
+              <Link 
+                href="/contact"
+                className="w-full py-2.5 rounded text-sm font-semibold text-white text-center transition-opacity hover:opacity-90 flex items-center justify-center gap-2"
+                style={{ backgroundColor: 'var(--clr-primary)' }}
+              >
+                <FileText className="w-4 h-4" /> Request Market Quote
+              </Link>
+              <div className="group relative inline-block text-center mt-1">
+                <span className="text-xs font-semibold uppercase tracking-wider cursor-help border-b border-dashed"
+                  style={{ color: 'var(--clr-accent-red)', borderBottomColor: 'var(--clr-accent-red)' }}>
+                  Flexible Pricing
+                </span>
+                <div className="invisible group-hover:visible absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 text-xs text-white bg-gray-800 rounded shadow-lg z-10">
+                  Prices are market-responsive to ensure the best value for bulk international trade.
+                </div>
+              </div>
             </div>
           )}
         </div>

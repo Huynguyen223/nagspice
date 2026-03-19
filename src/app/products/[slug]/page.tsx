@@ -40,25 +40,25 @@ export default function ProductPage() {
       <Header />
 
       {/* ── Hero Banner ── */}
-      <div className="relative w-full overflow-hidden" style={{ height: '220px', backgroundColor: '#2a1a0a' }}>
+      <div className="relative w-full overflow-hidden" style={{ height: '220px', backgroundColor: 'var(--clr-bg)' }}>
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url(/images/hero-farming.jpg)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: 0.35,
+            opacity: 0.15,
           }}
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(20,12,4,0.8) 0%, rgba(20,12,4,0.4) 100%)' }} />
-        <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-end pb-8">
+        <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(to right, rgba(250,250,249,0.9) 0%, rgba(250,250,249,0.4) 100%)' }} />
+        <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-end pb-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-1.5 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
-            <span className="cursor-pointer hover:text-amber-400 transition-colors" onClick={() => navigate('/')}>Home</span>
+          <nav className="flex items-center gap-1.5 text-sm" style={{ color: 'var(--clr-text-muted)' }}>
+            <span className="cursor-pointer hover:text-amber-600 transition-colors" onClick={() => navigate('/')}>Home</span>
             <ChevronRight className="h-3.5 w-3.5" />
-            <span className="cursor-pointer hover:text-amber-400 transition-colors" onClick={() => navigate('/products')}>Products</span>
+            <span className="cursor-pointer hover:text-amber-600 transition-colors" onClick={() => navigate('/products')}>Products</span>
             <ChevronRight className="h-3.5 w-3.5" />
-            <span style={{ color: '#f5edd8' }}>{product.name}</span>
+            <span style={{ color: 'var(--clr-text)', fontWeight: 600 }}>{product.name}</span>
           </nav>
         </div>
       </div>
@@ -102,12 +102,17 @@ export default function ProductPage() {
                   {product.name}
                 </h1>
 
-                {/* FOB price */}
-                <div className="flex items-baseline gap-3">
-                  <span style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--clr-primary)', fontFamily: 'var(--font-heading)' }}>
-                    {product.fobPrice}
-                  </span>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--clr-text-muted)' }}>Est. FOB Price</span>
+                {/* Pricing pivot */}
+                <div className="flex flex-col justify-start">
+                  <div className="group relative inline-block w-max">
+                    <span className="text-xs font-bold uppercase tracking-wider cursor-help px-2 py-1 rounded-sm border"
+                      style={{ color: 'var(--clr-accent-red)', borderColor: 'var(--clr-accent-red)', backgroundColor: 'var(--clr-bg-alt)' }}>
+                      Flexible Pricing Model
+                    </span>
+                    <div className="invisible group-hover:visible absolute top-full left-0 mt-2 w-64 p-3 text-xs text-white bg-gray-800 rounded shadow-lg z-10 text-left">
+                      Prices are market-responsive to ensure you receive the most competitive value for bulk international trade. Contact us for current FOB/CIF rates.
+                    </div>
+                  </div>
                 </div>
 
                 {/* Key specs */}

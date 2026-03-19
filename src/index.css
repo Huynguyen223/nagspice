@@ -1,28 +1,28 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-logo: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Raleway', sans-serif;
   --font-body: 'Raleway', sans-serif;
 
-  --clr-primary: #92400e;
-  --clr-primary-hover: #78350f;
-  --clr-accent: #b45309;
-  --clr-accent-red: #b91c1c;
-  --clr-bg: #faf7f2;
-  --clr-bg-alt: #f5ede0;
+  --clr-primary: #7c2d12;
+  --clr-primary-hover: #5c2009;
+  --clr-accent: #7c2d12;
+  --clr-accent-red: #9a3412;
+  --clr-bg: #fafaf9;
+  --clr-bg-alt: #f5f5f4;
   --clr-surface: #ffffff;
-  --clr-border: #e8ddd0;
-  --clr-text: #1c1917;
-  --clr-text-muted: #78716c;
+  --clr-border: #e7e5e4;
+  --clr-text: #292524;
+  --clr-text-muted: #57534e;
   --clr-text-light: #a8a29e;
 
-  /* Dark / brown section text — much brighter for legibility */
-  --clr-dark-text: #f0e4cc;
+  /* Dark / brown section text — modified to bright theme scheme */
+  --clr-dark-text: #1c1917;
   /* warm off-white  */
-  --clr-dark-muted: #c9b090;
+  --clr-dark-muted: #44403c;
   /* golden tan     */
-  --clr-dark-faint: #9a7f60;
+  --clr-dark-faint: #78716c;
   /* visible on dark bg  */
 }
 

@@ -7,6 +7,7 @@ import { FlavorSpices } from '../components/sections/FlavorSpices';
 import { FeaturedProductsTabs } from '../components/sections/FeaturedProductsTabs';
 import { GlobalShippingSection } from '../components/sections/GlobalShippingSection';
 import { CertificationsSection } from '../components/sections/CertificationsSection';
+import { FactoryGallery } from '../components/sections/FactoryGallery';
 import { ArticleGrid } from '../components/sections/ArticleGrid';
 
 export default function Page() {
@@ -19,6 +20,7 @@ export default function Page() {
         <FlavorSpices />
         <FeaturedProductsTabs />
         <CertificationsSection />
+        <FactoryGallery />
         <GlobalShippingSection />
         <ArticleGrid />
       </main>

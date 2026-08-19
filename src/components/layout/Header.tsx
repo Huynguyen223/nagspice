@@ -5,7 +5,7 @@ import { Link } from '../ui/Link';
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b shadow-sm"
-      style={{ backgroundColor: 'rgba(248, 240, 235, 0.98)', backdropFilter: 'blur(8px)', borderColor: 'rgba(124,45,18,0.15)' }}>
+      style={{ backgroundColor: 'rgba(248, 240, 235, 0.98)', backdropFilter: 'blur(8px)', borderColor: 'rgba(127,20,22,0.15)' }}>
       {/* Top bar */}
       <div className="hidden md:flex items-center justify-end gap-6 px-6 py-1.5 text-xs border-b"
         style={{ borderColor: 'rgba(255,255,255,0.2)', backgroundColor: 'var(--clr-primary)', color: '#ffffff' }}>
@@ -23,19 +23,8 @@ export function Header() {
           <button className="md:hidden p-2 -ml-2" style={{ color: 'var(--clr-text-muted)' }}>
             <Menu className="h-6 w-6" />
           </button>
-          <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex flex-col leading-none">
-            <span style={{
-              fontFamily: 'var(--font-logo)',
-              fontSize: '1.7rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              color: 'var(--clr-primary)',
-            }}>
-              NAGROUP SPICE
-            </span>
-            <span style={{ fontSize: '0.55rem', letterSpacing: '0.25em', color: 'var(--clr-text-muted)', textTransform: 'uppercase' }}>
-              Excite your palate
-            </span>
+          <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center">
+            <img src="/images/nag-logo.svg" alt="NAG - Farm to Flavour" className="h-10 md:h-12 w-auto" />
           </Link>
         </div>
 

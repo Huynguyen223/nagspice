@@ -44,10 +44,10 @@ const SOCIAL = [
 
 export function Footer() {
   return (
-    <footer style={{ backgroundColor: '#f8f0eb', color: 'var(--clr-text-muted)', fontFamily: 'var(--font-body)', borderTop: '1px solid rgba(124,45,18,0.15)' }}>
+    <footer style={{ backgroundColor: '#f8f0eb', color: 'var(--clr-text-muted)', fontFamily: 'var(--font-body)', borderTop: '1px solid rgba(127,20,22,0.15)' }}>
 
       {/* ── Top CTA strip ── */}
-      <div className="border-b" style={{ borderColor: 'rgba(124,45,18,0.15)' }}>
+      <div className="border-b" style={{ borderColor: 'rgba(127,20,22,0.15)' }}>
         <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <p style={{
@@ -80,27 +80,8 @@ export function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             {/* Logo */}
-            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="mb-4 block hover:opacity-90 transition-opacity">
-              <span style={{
-                fontFamily: 'var(--font-logo)',
-                fontSize: '2rem',
-                fontWeight: 800,
-                color: 'var(--clr-primary)',
-                letterSpacing: '0.06em',
-              }}>
-                NAGROUP SPICE
-              </span>
-              <br />
-              <span style={{
-                fontSize: '0.6rem',
-                letterSpacing: '0.28em',
-                color: 'var(--clr-text-light)',
-                textTransform: 'uppercase',
-                fontFamily: 'var(--font-body)',
-                fontWeight: 500,
-              }}>
-                Excite your palate
-              </span>
+            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="mb-4 inline-block hover:opacity-90 transition-opacity">
+              <img src="/images/nag-logo.svg" alt="NAG - Farm to Flavour" className="h-14 w-auto" />
             </Link>
 
             <p style={{
@@ -135,7 +116,7 @@ export function Footer() {
                   href={href}
                   aria-label={label}
                   className="flex items-center justify-center w-8 h-8 rounded-full transition-all hover:bg-amber-100"
-                  style={{ border: '1px solid rgba(124,45,18,0.15)', color: 'var(--clr-dark-muted)' }}
+                  style={{ border: '1px solid rgba(127,20,22,0.15)', color: 'var(--clr-dark-muted)' }}
                 >
                   <Icon className="h-3.5 w-3.5" />
                 </a>
@@ -176,7 +157,7 @@ export function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="border-t" style={{ borderColor: 'rgba(124,45,18,0.15)' }}>
+      <div className="border-t" style={{ borderColor: 'rgba(127,20,22,0.15)' }}>
         <div className="container mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs"
           style={{ color: 'var(--clr-text-light)' }}>
           <p>&copy; {new Date().getFullYear()} NAGROUP Spice. All rights reserved.</p>

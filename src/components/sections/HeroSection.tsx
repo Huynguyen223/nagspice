@@ -43,7 +43,7 @@ export function HeroSection() {
       {/* Content */}
       <div className="container mx-auto px-4 relative z-20 text-center flex flex-col items-center py-24">
         <span className="inline-block mb-6 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-[0.25em] shadow-lg"
-          style={{ backgroundColor: 'var(--clr-primary)', color: '#ffffff', border: '1px solid var(--clr-primary)', boxShadow: '0 4px 6px -1px rgba(124, 45, 18, 0.4)' }}>
+          style={{ backgroundColor: 'var(--clr-primary)', color: '#ffffff', border: '1px solid var(--clr-primary)', boxShadow: '0 4px 6px -1px rgba(127,20,22, 0.4)' }}>
           B2B Wholesale · Premium Cinnamon Exporter
         </span>
 
